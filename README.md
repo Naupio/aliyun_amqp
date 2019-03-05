@@ -8,8 +8,8 @@ The following VALUES like **aliyun-amqp-host** **ResourceOwnerId**, **AccessKeyI
 -include_lib("amqp_client/include/amqp_client.hrl").
 connect_amqp() ->
   Host = "1979843765064456.mq-amqp.cn-hangzhou-a.aliyuncs.com", # aliyun amqp host
-  UserName = get_user_name("1979843765064456", "VSAsIVkiohunPUa"),  # ResourceOwnerId, AccessKeyId
-  PassWord =  get_password("i89NgFbEqKWrPOITR7FDWfbLQniO2ij"), # An aliyun secrectKey
+  UserName = aliyun_amqp:get_user_name("1979843765064456", "VSAsIVkiohunPUa"),  # ResourceOwnerId, AccessKeyId
+  PassWord =  aliyun_amqp:get_password("i89NgFbEqKWrPOITR7FDWfbLQniO2ij"), # An aliyun secrectKey
   VirtualHost = <<"your_virtual_host">>,
   AmqpParams = #amqp_params_network{
                         username = UserName,
