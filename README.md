@@ -1,5 +1,13 @@
 # aliyun_amqp
 
+Add deps for rebar.config
+==========
+```erlang
+{deps, [
+  {aliyun_amqp, {git, "https://github.com/Naupio/aliyun_amqp.git", {tag, "0.1.0"} }}
+]}.
+```
+
 Example
 ========
 The following VALUES like **aliyun-amqp-host** **ResourceOwnerId**, **AccessKeyId** and **SecrectKey** are mock data, please use your owner value to replace it.
