@@ -1,0 +1,16 @@
+{application, aliyun_amqp,
+ [{description, "An OTP application"},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {mod, {aliyun_amqp_app, []}},
+  {applications,
+   [kernel,
+    stdlib,
+    amqp_client
+   ]},
+  {env,[]},
+  {modules, []},
+
+  {licenses, ["Apache 2.0"]},
+  {links, []}
+ ]}.
