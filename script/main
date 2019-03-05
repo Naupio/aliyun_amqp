@@ -1,0 +1,4 @@
+#! /bin/bash
+
+cd ../
+ERL_FLAGS=" -args_file config/vm.args -config config/sys.config" rebar3 shell

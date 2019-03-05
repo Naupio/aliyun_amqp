@@ -4,8 +4,23 @@ Add deps for rebar.config
 ==========
 ```erlang
 {deps, [
-  {aliyun_amqp, {git, "https://github.com/Naupio/aliyun_amqp.git", {tag, "0.1.0"} }}
+  {aliyun_amqp, {git, "https://github.com/Naupio/aliyun_amqp.git", {tag, "0.1.1"} }}
 ]}.
+```
+
+Config
+========
+edit the ./config/sys.config file
+```erlang
+[
+  %% user your own datas to fill the following values
+  {aliyun_amqp, [
+    {resource_owner_id,  "1979843765064456"},
+    {access_key_id,  "VSAsIVkiohunPUa"},
+    {secrect_key,  "1979843765064456"},
+    {host, "1979843765064456.mq-amqp.cn-hangzhou-a.aliyuncs.com"}
+  ]}
+].
 ```
 
 Example
@@ -14,21 +29,11 @@ The following VALUES like **aliyun-amqp-host** **ResourceOwnerId**, **AccessKeyI
 ```erlang
 -module(connect_module)
 -include_lib("amqp_client/include/amqp_client.hrl").
-connect_amqp() ->
-  Host = "1979843765064456.mq-amqp.cn-hangzhou-a.aliyuncs.com", # aliyun amqp host
-  UserName = aliyun_amqp:get_user_name("1979843765064456", "VSAsIVkiohunPUa"),  # ResourceOwnerId, AccessKeyId
-  PassWord =  aliyun_amqp:get_password("i89NgFbEqKWrPOITR7FDWfbLQniO2ij"), # An aliyun secrectKey
-  VirtualHost = <<"your_virtual_host">>,
-  AmqpParams = #amqp_params_network{
-                        username = UserName,
-                        password = PassWord,
-                        host = Host,
-                        virtual_host= VirtualHost
-                      }
-  aliyun_amqp:connect_aliyun_amqp(AmqpParams).
-
+connect_aliyun_amqp() ->
+  VirtualHost = <<"your_amqp_virtual_host">>,
+  aliyun_amqp:connect_aliyun_amqp(#amqp_params_network{virtual_host = VirtualHost}).
 main() ->
-  {ok, Connection} = connect_amqp().
+  connect_aliyun_amqp().
 ```
 
 Reference

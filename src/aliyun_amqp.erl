@@ -15,10 +15,19 @@
   connect_aliyun_amqp/1
 ]).
 
-connect_aliyun_amqp(#amqp_params_network{} = AmqpParams) ->
-  Result = amqp_connection:start(AmqpParams),
-  % ?PRINT(Result),
-  Result.
+connect_aliyun_amqp(#amqp_params_network{} = AmqpParamsNetwork) ->
+  {ok, Host} = application:get_env(aliyun_amqp, host),
+  {ok, ResourceOwnerId} = application:get_env(aliyun_amqp, resource_owner_id),
+  {ok, AccessKeyId} = application:get_env(aliyun_amqp, access_key_id),
+  {ok, SecrectKey} = application:get_env(aliyun_amqp, secrect_key),
+  UserName = aliyun_amqp:get_user_name(ResourceOwnerId, AccessKeyId),  % ResourceOwnerId, AccessKeyId
+  PassWord =  aliyun_amqp:get_password(SecrectKey), % An aliyun SecrectKey
+  AmqpParams = AmqpParamsNetwork#amqp_params_network{
+                        username = UserName,
+                        password = PassWord,
+                        host = Host
+                      },
+  amqp_connection:start(AmqpParams).
 
 
 get_user_name(ResourceOwnerId, AccessKey) ->
