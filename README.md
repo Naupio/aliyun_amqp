@@ -13,7 +13,7 @@ Config
 edit the ./config/sys.config file
 ```erlang
 [
-  %% user your own datas to fill the following values
+  %% use your datas to replace the following values
   {aliyun_amqp, [
     {resource_owner_id,  "1979843765064456"},
     {access_key_id,  "VSAsIVkiohunPUa"},
